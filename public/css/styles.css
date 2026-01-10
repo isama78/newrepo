@@ -166,7 +166,7 @@ body {
 }
 
 .upgrade-item a {
-  color: #333;
+  color: #000;
   text-decoration: underline;
   font-size: 0.85rem;
   font-weight: bold;
