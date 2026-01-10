@@ -4,3 +4,289 @@
 *:after {
   box-sizing: border-box;
 }
+
+/* --- ESTILOS BASE (Mobile First) --- */
+
+/* Tipografía y accesibilidad (Lineamiento #6 y #8) */
+body {
+  background-image:
+    linear-gradient(45deg, #eee 25%, transparent 25%),
+    linear-gradient(-45deg, #eee 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #eee 75%),
+    linear-gradient(-45deg, transparent 75%, #eee 75%);
+  background-size: 40px 40px;
+  background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
+  background-color: white;
+}
+
+.siteName {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #00a3cc;
+  padding: 10px 0;
+  margin: 0;
+}
+
+#wrapper {
+  max-width: 1000px;
+  /* Evita que el sitio se estire demasiado en monitores gigantes */
+  margin: 20px auto;
+  /* Centra el sitio y le da aire arriba/abajo */
+  background-color: white;
+  /* El contenido siempre sobre fondo blanco para legibilidad */
+  border: 5px solid #00a3cc;
+  /* Borde azul que se ve en la imagen */
+  border-radius: 10px;
+  overflow: hidden;
+  /* Mantiene todo dentro de las esquinas redondeadas */
+}
+
+/* El Hero (Sección del Delorean) */
+#hero-section {
+  padding: 10px;
+  position: relative;
+}
+
+/* Contenedor relativo para que el texto sepa dónde flotar */
+.hero-card {
+  position: relative;
+  display: block;
+  /* Permite que la imagen ocupe su espacio natural */
+}
+
+.hero-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* El cuadro flotante (Lineamiento #3) */
+.hero-text {
+  position: absolute;
+  /* Esto lo hace flotar */
+  top: 10px;
+  /* Distancia desde arriba */
+  left: 10px;
+  /* Distancia desde la izquierda */
+  background-color: rgba(255, 255, 255, 0.6);
+  /* Blanco semi-transparente */
+  padding: 10px;
+  z-index: 5;
+  /* Asegura que esté por encima de la imagen */
+  max-width: 180px;
+  /* Controla el ancho en móviles */
+}
+
+/* Ajustes de texto dentro del cuadro */
+.hero-text h2 {
+  margin: 0;
+  color: #00a3cc;
+  font-size: 1.3rem;
+}
+
+.hero-text p {
+  margin: 5px 0;
+  font-size: 1.1rem;
+  color: #00a3cc;
+}
+
+.action-button {
+  background-color: #00a3cc;
+  color: black;
+  padding: 8px 15px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  /* El botón ocupa todo el ancho del cuadrito */
+}
+
+.action-button {
+  background-color: #00a3cc;
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.hero-card img {
+  width: 100%;
+  height: auto;
+  order: 2;
+  /* Asegura que la imagen vaya debajo del texto en móvil */
+}
+
+/* Sección de Upgrades y Reviews */
+.data-wrapper {
+  display: flex;
+  flex-direction: column;
+  /* Una columna para móvil (Lineamiento #9.b) */
+  padding: 20px;
+}
+
+/* Cuadrícula de Upgrades */
+.upgrades-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* Dos columnas iguales (Lineamiento #9.b) */
+  gap: 20px;
+  /* Espacio entre tarjetas */
+  margin-top: 10px;
+}
+
+.upgrade-item {
+  background-color: #00a3cc;
+  /* Color azul cian de la imagen */
+  border: 1px solid #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Centra la imagen y el link horizontalmente */
+  padding: 10px;
+  height: 120px;
+  /* Altura fija para que todas sean iguales */
+  justify-content: center;
+}
+
+/* Contenedor de la imagen para asegurar el centrado */
+.img-box {
+  height: 70px;
+  /* Espacio reservado para la imagen */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.upgrade-item img {
+  max-height: 100%;
+  /* La imagen no se saldrá de su caja */
+  width: auto;
+}
+
+.upgrade-item a {
+  color: #333;
+  text-decoration: underline;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  /* Empuja el logo a la izquierda y link a la derecha */
+  align-items: center;
+  padding: 10px 20px;
+}
+
+header a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+nav {
+  background-color: #333;
+  /* Fondo oscuro del video y fotos */
+  margin: 0;
+  padding: 0;
+}
+
+nav ul {
+  display: flex;
+  /* Alinea los elementos en fila */
+  flex-wrap: wrap;
+  /* Permite que bajen si no caben en móviles muy pequeños */
+  justify-content: space-around;
+  /* Espaciado uniforme (Lineamiento #7) */
+  list-style: none;
+  /* Quita los puntos de la lista */
+  padding: 10px 0;
+  margin: 0;
+}
+
+nav ul li {
+  color: white;
+  /* Texto blanco sobre fondo oscuro */
+  font-weight: bold;
+  padding: 10px 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+/* Efecto visual al pasar el mouse (Lineamiento #6) */
+nav ul li:hover {
+  background-color: #444;
+  color: #00a3cc;
+}
+
+/* Aseguramos que el contenedor tenga una altura mínima o definida */
+.reviews-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Configuramos la lista para que sea un contenedor flex vertical */
+.reviews-container ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* Distribuye los li equitativamente */
+  height: 100%;
+  /* Obliga a la lista a ocupar todo el alto disponible */
+  margin: 0;
+  padding: 10px 0 10px 20px;
+  /* Ajusta el padding para las viñetas */
+  flex-grow: 1;
+  /* Permite que la lista crezca para llenar el section */
+}
+
+/* Estilo para los elementos de la lista */
+.reviews-container li {
+  margin-bottom: 10px;
+  /* Espaciado mínimo entre reseñas */
+}
+
+footer {
+  padding-left: 20px;
+  text-align: left;
+}
+
+/* --- DISEÑO DESKTOP (Lineamiento #9.d) --- */
+
+@media screen and (min-width: 800px) {
+  .siteName {
+    font-size: 2rem;
+  }
+  
+  .data-wrapper {
+    flex-direction: row-reverse;
+    /* Pone Reviews a la derecha y Upgrades a la izquierda */
+    justify-content: space-between;
+  }
+
+  .upgrades-container,
+  .reviews-container {
+    width: 48%;
+    /* Divide el espacio en dos columnas */
+  }
+
+  .hero-text {
+    top: 40px;
+    left: 40px;
+    max-width: 250px;
+    padding: 10px;
+  }
+
+  .hero-text h2 {
+    font-size: 1.8rem;
+  }
+
+  nav ul {
+    justify-content: center;
+    /* Centra el menú en pantallas anchas */
+    gap: 40px;
+    /* Da más espacio entre cada categoría */
+  }
+}
