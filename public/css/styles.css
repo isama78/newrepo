@@ -206,8 +206,9 @@ nav ul {
   margin: 0;
 }
 
-nav ul li {
+nav ul li a {
   color: #dcdad7;
+  text-decoration: none;
   /* Texto blanco sobre fondo oscuro */
   font-weight: bold;
   padding: 10px 5px;
@@ -216,7 +217,8 @@ nav ul li {
 }
 
 /* Efecto visual al pasar el mouse (Lineamiento #6) */
-nav ul li:hover {
+nav ul li a:hover {
+  text-decoration: underline;
   background-color: #444;
   color: #00a3cc;
 }
