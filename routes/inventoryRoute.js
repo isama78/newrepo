@@ -12,6 +12,7 @@ router.get("/type/:classificationId", invController.buildByClassificationId);
 // Route to build inventory item detail view
 router.get("/detail/:invId", utilities.handleErrors(invController.buildDetailView))
 
+
 router.get("/trigger-error", invController.triggerError)
 
 module.exports = router;
