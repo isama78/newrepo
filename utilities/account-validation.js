@@ -108,19 +108,19 @@ validate.checkRegData = async (req, res, next) => {
 validate.checkLoginData = async (req, res, next) => {
   const { account_email } = req.body
   let errors = []
-  errors = validationResult(req) // Aquí es donde express-validator entrega los resultados
+  errors = validationResult(req) 
   
   if (!errors.isEmpty()) {
-    let nav = await utilities.getNav() // Necesitas el nav para volver a cargar la vista
+    let nav = await utilities.getNav() 
     res.render("account/login", {
       errors,
       title: "Login",
       nav,
-      account_email, // Mantenemos el email "pegado" (stickiness)
+      account_email, 
     })
     return
   }
-  next() // Si todo está bien, pasa al controlador loginAccount
+  next() 
 }
 
 module.exports = validate
