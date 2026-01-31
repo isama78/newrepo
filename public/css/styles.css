@@ -18,6 +18,23 @@ body {
   background-color: white;
 }
 
+input:required:invalid,
+input:focus:invalid {
+  background-image: url(/images/invalid.png);
+  background-position: right top;
+  background-repeat: no-repeat;
+}
+
+input:required:valid {
+  background-image: url(/images/valid.png);
+  background-position: right top;
+  background-repeat: no-repeat;
+}
+
+.notice {
+  color: red;
+}
+
 .siteName {
   font-size: 1.5rem;
   font-weight: bold;
@@ -271,11 +288,297 @@ footer {
   color: #00a3cc;
 }
 
+.login-container {
+  background-color: #00a2d4;
+  /* Azul CSE Motors */
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin: 1rem auto;
+  width: 90%;
+  /* Ajuste para pantallas pequeñas */
+  color: black;
+}
+
+/* El recuadro interno que contiene los inputs */
+form {
+  border: 1px solid #ccc;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: block;
+  text-align: left;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Texto de requisitos de contraseña */
+.password-hint {
+  font-style: italic;
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+  display: block;
+  line-height: 1.2;
+}
+
+/* Botón de Login (Estilo simple como el de la imagen) */
+button[type="submit"] {
+  background-color: #efefef;
+  border: 1px solid #767676;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  width: fit-content;
+  /* No ocupa todo el ancho en móvil si no quieres */
+}
+
+.signup-link {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.signup-link a {
+  color: black;
+  text-decoration: underline;
+}
+
+/* Contenedor azul principal */
+.inventory-container {
+  background-color: #00a2d4;
+  /* Azul CSE Motors según imagen */
+  padding: 1rem;
+  border-radius: 5px;
+  margin: 1rem auto;
+  width: 95%;
+  /* Ocupa casi todo el ancho en celulares */
+  color: #000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* El formulario con el borde blanco/gris delgado de la captura */
+.inventory-container form {
+  border: 1px solid #e0e0e0;
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.inventory-container p {
+  font-weight: bold;
+  font-style: italic;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+/* Etiquetas e Inputs */
+.inventory-container label {
+  display: block;
+  margin-top: 0.8rem;
+  font-weight: 500;
+  text-align: left;
+}
+
+.inventory-container input,
+.inventory-container select,
+.inventory-container textarea {
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+  /* Evita que el padding desborde el ancho */
+  font-family: sans-serif;
+}
+
+/* Estilo para el área de descripción */
+.inventory-container textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+/* Botón de envío (Estilo simple y funcional) */
+.inventory-container button[type="submit"] {
+  margin-top: 1.5rem;
+  padding: 0.8rem;
+  background-color: #efefef;
+  border: 1px solid #767676;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.inventory-container button[type="submit"]:hover {
+  background-color: #ddd;
+}
+
+.inventory-container {
+  background-color: #00a2d4;
+  /* El azul CSE Motors de tu imagen */
+  padding: 1rem;
+  border-radius: 5px;
+  margin: 1rem auto;
+  width: 95%;
+  color: #000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.inventory-container form {
+  border: 1px solid #e0e0e0;
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.1);
+  /* Un toque sutil de contraste */
+}
+
+/* Estilo para las instrucciones del campo */
+.inventory-container span {
+  display: block;
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.inventory-container label {
+  display: block;
+  margin-top: 0.8rem;
+  font-weight: bold;
+}
+
+.inventory-container input {
+  width: 100%;
+  padding: 0.7rem;
+  margin-top: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+.inventory-container button[type="submit"] {
+  margin-top: 1.5rem;
+  padding: 0.8rem;
+  background-color: #efefef;
+  border: 1px solid #767676;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* ==========================================
+   MANAGEMENT VIEW STYLES 
+   ========================================== */
+
+.management-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin: 2rem auto;
+  width: 90%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Convertimos los enlaces en botones grandes y táctiles */
+.management-links a {
+  display: block;
+  padding: 1.2rem;
+  background-color: #00a2d4;
+  /* El azul característico de CSE Motors */
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, transform 0.2s;
+  border: 1px solid #007ba1;
+}
+
+.management-links a:hover {
+  background-color: #0081a7;
+  transform: translateY(-2px);
+}
+
+.management-links a:active {
+  transform: translateY(0);
+}
+
 /* --- DESKTOP DESIGN --- */
 
 @media screen and (min-width: 800px) {
   .siteName {
     font-size: 2rem;
+  }
+
+  .management-links {
+    max-width: 600px;
+    flex-direction: row;
+    /* En PC se ven uno al lado del otro */
+    justify-content: center;
+    padding: 3rem;
+  }
+
+  .management-links a {
+    flex: 1;
+    /* Ambos botones ocupan el mismo ancho */
+    padding: 2rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80px;
+    font-size: 1.1rem;
+  }
+
+  .inventory-container {
+    max-width: 500px;
+    /* Un poco más angosto para clasificación */
+    padding: 2rem;
+  }
+
+  .inventory-container {
+    max-width: 600px;
+    /* Ancho controlado para escritorio */
+    padding: 2rem;
+  }
+
+  .inventory-container form {
+    padding: 2rem;
+  }
+
+  /* Opcional: disposición en dos columnas para etiquetas/inputs en desktop */
+  .inventory-container label {
+    font-size: 1rem;
+  }
+
+  .login-container {
+    max-width: 450px;
+    /* Limitamos el ancho para que no se vea gigante en PC */
+    margin-top: 3rem;
+    padding: 2.5rem;
+  }
+
+  .password-hint {
+    font-size: 0.9rem;
+    /* Un poco más legible en pantallas grandes */
   }
 
   .vehicle-detail {
