@@ -37,14 +37,26 @@ router.post(
  * Process login
  * Unit 4, process login activity
  * ******************************************/
-//router.post("/login", utilities.handleErrors(accountController.loginAccount))
-
-// Process the login attempt
 router.post(
   "/login",
   regValidate.loginRules(),
   regValidate.checkLoginData,
-  utilities.handleErrors(accountController.loginAccount)
+  utilities.handleErrors(accountController.accountLogin)
 )
+
+// Check login
+router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildManagement))
+
+router.get("/logout", utilities.handleErrors(accountController.logout))
+
+router.get("/update/:account_id", utilities.checkLogin, utilities.handleErrors(accountController.buildUpdateView))
+
+router.post(
+  "/update",
+  regValidate.updateRules(),
+  regValidate.checkUpdateData,
+  utilities.handleErrors(accountController.updateAccount)
+)
+
 
 module.exports = router

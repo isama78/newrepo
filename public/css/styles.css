@@ -502,12 +502,36 @@ button[type="submit"] {
   transform: translateY(0);
 }
 
+.account-update-container form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  background-color: #00a3cd;
+}
+
+.account-update-container label {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.account-update-container input {
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
 /* --- DESKTOP DESIGN --- */
 
 @media screen and (min-width: 800px) {
   .siteName {
     font-size: 2rem;
   }
+
+  .account-update-container form {
+  max-width: 90%;
+}
 
   .management-links {
     max-width: 600px;

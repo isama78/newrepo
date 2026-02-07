@@ -21,16 +21,32 @@ validate.classificationRules = () => {
  * ********************************* */
 validate.inventoryRules = () => {
   return [
-    body("classification_id").notEmpty().withMessage("Seleccione una clasificación."),
-    body("inv_make").trim().isLength({ min: 3 }).withMessage("Marca mínima de 3 caracteres."),
-    body("inv_model").trim().isLength({ min: 3 }).withMessage("Modelo mínimo de 3 caracteres."),
-    body("inv_year").isNumeric().isLength({ min: 4, max: 4 }).withMessage("Año inválido."),
-    body("inv_description").notEmpty().withMessage("La descripción es obligatoria."),
-    body("inv_image").notEmpty().withMessage("La ruta de imagen es obligatoria."),
-    body("inv_thumbnail").notEmpty().withMessage("La ruta de miniatura es obligatoria."),
-    body("inv_price").isNumeric().withMessage("El precio debe ser un número."),
-    body("inv_miles").isNumeric().withMessage("El kilometraje debe ser un número."),
-    body("inv_color").trim().notEmpty().withMessage("El color es obligatorio.")
+    body("classification_id").notEmpty().withMessage("Select a classification."),
+    body("inv_make").trim().isLength({ min: 3 }).withMessage("Minimum 3 characters for make."),
+    body("inv_model").trim().isLength({ min: 3 }).withMessage("Minimum 3 characters for model."),
+    body("inv_year").isNumeric().isLength({ min: 4, max: 4 }).withMessage("Invalid year."),
+    body("inv_description").notEmpty().withMessage("Description is obligatory."),
+    body("inv_image").notEmpty().withMessage("Image path is obligatory."),
+    body("inv_thumbnail").notEmpty().withMessage("Thumbnail path is obligatory."),
+    body("inv_price").isNumeric().withMessage("Price must be a number."),
+    body("inv_miles").isNumeric().withMessage("Miles must be a number."),
+    body("inv_color").trim().notEmpty().withMessage("Color is obligatory.")
+  ]
+}
+
+validate.newInventoryRules = () => {
+  return [
+    body("inv_id").notEmpty().withMessage("ID of vehicle is obligatory."),
+    body("classification_id").notEmpty().withMessage("Select a classification."),
+    body("inv_make").trim().isLength({ min: 3 }).withMessage("Minimum 3 characters for make."),
+    body("inv_model").trim().isLength({ min: 3 }).withMessage("Minimum 3 characters for model."),
+    body("inv_year").isNumeric().isLength({ min: 4, max: 4 }).withMessage("Invalid year."),
+    body("inv_description").notEmpty().withMessage("Description is obligatory."),
+    body("inv_image").notEmpty().withMessage("Image path is obligatory."),
+    body("inv_thumbnail").notEmpty().withMessage("Thumbnail path is obligatory."),
+    body("inv_price").isNumeric().withMessage("Price must be a number."),
+    body("inv_miles").isNumeric().withMessage("Miles must be a number."),
+    body("inv_color").trim().notEmpty().withMessage("Color is obligatory.")
   ]
 }
 
@@ -62,6 +78,24 @@ validate.checkInventoryData = async (req, res, next) => {
       nav,
       classificationSelect,
       inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color
+    })
+    return
+  }
+  next()
+}
+ 
+validate.checkUpdateData = async (req, res, next) => {
+  const { inv_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id } = req.body
+  let errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    let classificationSelect = await utilities.buildClassificationList(classification_id)
+    res.render("inventory/edit-inventory", {
+      errors,
+      title: "Update Vehicle",
+      nav,
+      classificationSelect,
+      inv_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color
     })
     return
   }

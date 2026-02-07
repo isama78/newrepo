@@ -1,5 +1,7 @@
 const invModel = require("../models/inventory-model")
 const Util = {}
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
 
 /* ************************
  * Constructs the nav HTML unordered list
@@ -60,7 +62,7 @@ Util.buildClassificationGrid = async function (data) {
 /* **************************************
 * Build the vehicle detail view HTML
 * ************************************ */
-Util.buildVehicleHtml = async function(data) {
+Util.buildVehicleHtml = async function (data) {
   let display = '<div id="detail-display">'
   display += `<img src="${data.inv_image}" alt="Image of ${data.inv_make} ${data.inv_model}">`
   display += '<div id="detail-info">'
@@ -94,5 +96,54 @@ Util.buildClassificationList = async function (classification_id = null) {
  * General Error Handling
  **************************************** */
 Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
+
+/* ****************************************
+* Middleware to check token validity
+**************************************** */
+Util.checkJWTToken = (req, res, next) => {
+  if (req.cookies.jwt) {
+    jwt.verify(
+      req.cookies.jwt,
+      process.env.ACCESS_TOKEN_SECRET,
+      function (err, accountData) {
+        if (err) {
+          req.flash("Please log in")
+          res.clearCookie("jwt")
+          return res.redirect("/account/login")
+        }
+        res.locals.accountData = accountData
+        res.locals.loggedin = 1
+        next()
+      })
+  } else {
+    next()
+  }
+}
+
+/* ****************************************
+ *  Check Login
+ * ************************************ */
+ Util.checkLogin = (req, res, next) => {
+  if (res.locals.loggedin) {
+    next()
+  } else {
+    req.flash("notice", "Please log in.")
+    return res.redirect("/account/login")
+  }
+ }
+
+ /* ****************************************
+ * Check Account Type (Authorization)
+ * ************************************ */
+Util.checkAccountType = (req, res, next) => {
+  if (res.locals.loggedin && 
+     (res.locals.accountData.account_type === 'Employee' || 
+      res.locals.accountData.account_type === 'Admin')) {
+    next()
+  } else {
+    req.flash("notice", "Please log in with appropriate credentials to access this area.")
+    return res.redirect("/account/login")
+  }
+}
 
 module.exports = Util
