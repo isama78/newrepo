@@ -391,6 +391,7 @@ button[type="submit"] {
   border-radius: 3px;
   box-sizing: border-box;
   font-family: sans-serif;
+  resize: vertical;
 }
 
 .inventory-container textarea {
@@ -522,6 +523,161 @@ button[type="submit"] {
   margin-bottom: 10px;
 }
 
+/* --- Review Section & Lists --- */
+.reviews-section,
+.user-reviews-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 0 10px;
+}
+
+#review-list,
+.user-reviews {
+  list-style: none;
+  padding: 0;
+}
+
+#review-list li,
+.user-reviews li {
+  background-color: #fcfcfc;
+  border: 1px solid #eee;
+  border-left: 5px solid #3a3a3a;
+  /* Dark accent for a premium feel */
+  margin-bottom: 1.5rem;
+  padding: 1.2rem;
+  border-radius: 4px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+#review-list li strong,
+.user-reviews li strong {
+  color: #222;
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+}
+
+.review-meta {
+  font-size: 0.85rem;
+  color: #666;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+#review-list p,
+.user-reviews p {
+  margin: 10px 0 0 0;
+  line-height: 1.5;
+  color: #444;
+}
+
+/* --- Review Forms (Add, Edit, Delete) --- */
+.review-form-container form {
+  display: flex;
+  flex-direction: column;
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  margin-top: 20px;
+}
+
+.review-form-container label {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.review-form-container textarea {
+  min-height: 120px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1rem;
+  margin-bottom: 15px;
+  resize: vertical;
+}
+
+/* --- Buttons & Links --- */
+.review-form-container button {
+  padding: 12px 20px;
+  background-color: #0056b3;
+  /* Primary blue */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.review-form-container button:hover {
+  background-color: #004494;
+}
+
+.delete-btn {
+  background-color: #d9534f !important;
+  /* Warning red */
+}
+
+.delete-btn:hover {
+  background-color: #c9302c !important;
+}
+
+.review-actions {
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+
+.review-actions a {
+  color: #0056b3;
+  text-decoration: none;
+  margin-right: 15px;
+}
+
+.review-actions a:hover {
+  text-decoration: underline;
+}
+
+/* --- Read-only styling for Delete View --- */
+textarea[readonly],
+input[readonly] {
+  background-color: #e9ecef;
+  cursor: not-allowed;
+  color: #495057;
+}
+
+.star-group {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  margin-bottom: 15px;
+}
+
+.star-group input {
+  display: none;
+}
+
+.star-group label {
+  font-size: 2rem;
+  color: #ddd;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+/* Color dorado cuando se selecciona o se pasa el mouse */
+.star-group input:checked~label,
+.star-group label:hover,
+.star-group label:hover~label {
+  color: #f5b301;
+}
+
+.stars-display {
+  color: #f5b301;
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
 /* --- DESKTOP DESIGN --- */
 
 @media screen and (min-width: 800px) {
@@ -529,9 +685,17 @@ button[type="submit"] {
     font-size: 2rem;
   }
 
+  .review-form-container form {
+    padding: 15px;
+  }
+
+  #review-list li {
+    padding: 1rem;
+  }
+
   .account-update-container form {
-  max-width: 90%;
-}
+    max-width: 90%;
+  }
 
   .management-links {
     max-width: 600px;

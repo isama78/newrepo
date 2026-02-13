@@ -6,6 +6,72 @@
 
     <%# messages() %>
 
-    <section class="vehicle-detail">
-      <%- vehicleHtml %>
-    </section>
+      <section class="vehicle-detail">
+        <%- vehicleHtml %>
+      </section>
+
+      <% if (errors) { %>
+        <ul class="notice">
+          <% errors.array().forEach(error=> { %>
+            <li>
+              <%= error.msg %>
+            </li>
+            <% }) %>
+        </ul>
+        <% } %>
+
+          <hr>
+
+          <div class="reviews-section">
+            <h3>Users Reviews</h3>
+
+            <% if (reviews.length> 0) { %>
+              <ul id="review-list">
+                <% reviews.forEach(review=> { %>
+                  <li>
+                    <strong>
+                      <%= review.account_firstname %>
+                        <%= review.account_lastname %>
+                    </strong>
+                    wrote on <%= new Date(review.review_date).toLocaleDateString() %>:
+                      <p>
+                        <%= review.review_text %>
+                      </p>
+                      <div class="stars-display">
+                        <%= "★" .repeat(review.review_rating) %>
+                          <%= "☆" .repeat(5 - review.review_rating) %>
+                      </div>
+                  </li>
+                  <% }) %>
+              </ul>
+              <% } else { %>
+                <p>Be the first to review this vehicle!</p>
+                <% } %>
+
+                  <% if (locals.loggedin) { %>
+                    <form action="/review/add" method="post" id="reviewForm">
+                      <h4>Leave your opinion</h4>
+                      <label for="review_text">Comment:</label>
+                      <textarea name="review_text" id="review_text" required></textarea>
+
+                      <input type="hidden" name="inv_id" value="<%= inv_id %>">
+                      <input type="hidden" name="account_id" value="<%= locals.accountData.account_id %>">
+
+                      <div class="rating-input">
+                        <p>Your Rating:</p>
+                        <div class="star-group">
+                          <% [5,4,3,2,1].forEach(num=> { %>
+                            <!-- Number 5 is checked by default -->
+                            <input type="radio" id="star<%= num %>" name="review_rating" value="<%= num %>" <%=num===5
+                              ? 'checked' : '' %>> 
+                            <label for="star<%= num %>">★</label>
+                            <% }) %>
+                        </div>
+                      </div>
+
+                      <button type="submit">Submit Review</button>
+                    </form>
+                    <% } else { %>
+                      <p>You must <a href="/account/login">log in</a> to leave a review.</p>
+                      <% } %>
+          </div>

@@ -123,21 +123,21 @@ Util.checkJWTToken = (req, res, next) => {
 /* ****************************************
  *  Check Login
  * ************************************ */
- Util.checkLogin = (req, res, next) => {
+Util.checkLogin = (req, res, next) => {
   if (res.locals.loggedin) {
     next()
   } else {
     req.flash("notice", "Please log in.")
     return res.redirect("/account/login")
   }
- }
+}
 
- /* ****************************************
- * Check Account Type (Authorization)
- * ************************************ */
+/* ****************************************
+* Check Account Type (Authorization)
+* ************************************ */
 Util.checkAccountType = (req, res, next) => {
-  if (res.locals.loggedin && 
-     (res.locals.accountData.account_type === 'Employee' || 
+  if (res.locals.loggedin &&
+    (res.locals.accountData.account_type === 'Employee' ||
       res.locals.accountData.account_type === 'Admin')) {
     next()
   } else {

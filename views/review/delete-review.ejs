@@ -1,0 +1,16 @@
+<h1>
+  <%= title %>
+</h1>
+<%- messages() %>
+  <p class="notice">Confirm Deletion - This cannot be undone.</p>
+
+  <form action="/review/delete" method="post">
+    <label>Review Date</label>
+    <input type="text" value="<%= new Date(review_date).toLocaleDateString() %>" readonly>
+
+    <label>Review Text</label>
+    <textarea readonly><%= review_text %></textarea>
+
+    <input type="hidden" name="review_id" value="<%= review_id %>">
+    <button type="submit">Confirm Delete</button>
+  </form>

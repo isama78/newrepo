@@ -9,3 +9,21 @@
   <h3>Inventory Management</h3>
   <p><a href="/inv/">Manage Vehicle Inventory</a></p>
 <% } %>
+
+<hr>
+<h3>My Product Reviews</h3>
+<% if (userReviews && userReviews.length > 0) { %>
+  <ul class="user-reviews">
+    <% userReviews.forEach(review => { %>
+      <li>
+        You reviewed <strong><%= review.inv_make %> <%= review.inv_model %></strong> 
+        on <%= new Date(review.review_date).toLocaleDateString() %>:
+        <p>"<%= review.review_text %>"</p>
+        <a href="/review/edit/<%= review.review_id %>">Edit</a> | 
+        <a href="/review/delete/<%= review.review_id %>">Delete</a>
+      </li>
+    <% }) %>
+  </ul>
+<% } else { %>
+  <p>You have no reviews yet. Be the first to review a vehicle!</p>
+<% } %>

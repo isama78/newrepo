@@ -1,0 +1,22 @@
+<h1>
+  <%= title %>
+</h1>
+<%- messages() %>
+
+  <form action="/review/update" method="post">
+    <div class="rating-input">
+      <p>Your Rating:</p>
+      <div class="star-group">
+        <% [5,4,3,2,1].forEach(num=> { %>
+          <input type="radio" id="star<%= num %>" name="review_rating" value="<%= num %>" <%=(locals.review_rating==num)
+            ? 'checked' : '' %>>
+          <label for="star<%= num %>">★</label>
+          <% }) %>
+      </div>
+    </div>
+    <label for="review_text">Review Text</label>
+    <textarea name="review_text" id="review_text" required><%= review_text %></textarea>
+
+    <input type="hidden" name="review_id" value="<%= review_id %>">
+    <button type="submit">Update Review</button>
+  </form>

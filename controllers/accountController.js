@@ -6,6 +6,7 @@ const accountModel = require('../models/account-model')
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
+const reviewModel = require("../models/review-model")
 
 
 
@@ -79,9 +80,6 @@ async function registerAccount(req, res) {
 }
 
 /* ****************************************
-*  Process Login
-* *************************************** */
-/* ****************************************
  *  Process login request
  * ************************************ */
 async function accountLogin(req, res) {
@@ -128,10 +126,18 @@ async function accountLogin(req, res) {
 * *************************************** */
 async function buildManagement(req, res, next) {
   let nav = await utilities.getNav()
+
+  const account_id = res.locals.accountData.account_id
+  const userReviews = await reviewModel.getReviewsByAccountId(account_id)
+  if (userReviews.length === 0) {
+    req.flash("notice", "You have no reviews yet.")
+  }
+
   res.render("account/management", {
     title: "Account Management",
     nav,
     errors: null,
+    userReviews,
   })
 }
 
